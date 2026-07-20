@@ -1,1 +1,1 @@
-print("Python environment is ready")
+print("Hello world")
