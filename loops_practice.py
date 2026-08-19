@@ -156,7 +156,11 @@ print(words)
 # ЗАДАНИЕ car_class
 
 
+from datetime import datetime
+
+
 class Car:
+
     def __init__(self, brand: str, model: str, year: int):
         self.brand = brand
         self.model = model
@@ -165,14 +169,26 @@ class Car:
     def print_car_info(self) -> None:
         print(f"{self.brand} {self.model} ({self.year})")
 
+    def age(self) -> int:
+        """Возвращает возраст автомобиля в годах."""
+        current_year = datetime.now().year
+        return current_year - self.year
 
+
+# Пример использования:
 car1 = Car("Hyundai", "Solaris", 2024)
 car2 = Car("Audi", "A6", 2020)
 car3 = Car("Niva", "Chevrolet", 2025)
 
 car1.print_car_info()
+print(f"Возраст: {car1.age()} г.")  # Выведет: 2 (для 2026 года)
+
 car2.print_car_info()
+print(f"Возраст: {car2.age()} г.")  # Выведет: 6
+
 car3.print_car_info()
+print(f"Возраст: {car3.age()} г.")  # Выведет: 1
+
 
 
 # ЗАДАНИЕ Lead_class
