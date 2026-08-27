@@ -1,5 +1,3 @@
-
-
 import pytest
 from playwright.sync_api import Page, expect
 
@@ -22,5 +20,6 @@ def test_features_items_subset(page: Page) -> None:
     expected = {"Blue Top", "Men Tshirt", "Stylish Dress"}
 
     # Subset-ассерт (главное преимущество)
-    assert expected.issubset(set(product_names)), \
-        f"Не все ожидаемые товары найдены. Найдено: {product_names}"
+    assert expected.issubset(
+        set(product_names)
+    ), f"Не все ожидаемые товары найдены. Найдено: {product_names}"
