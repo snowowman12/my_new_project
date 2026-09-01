@@ -9,13 +9,26 @@ load_dotenv()
 
 
 @pytest.mark.ui
-def test_successful_login(page):
+@pytest.mark.parametrize(
+    "username, password",
+    [
+        # Передаем основной аккаунт (из .env или дефолтный)
+        (
+            os.getenv("SAUCE_USER", "standard_user"),
+            os.getenv("SAUCE_PASS", "secret_sauce"),
+        ),
+        # Дополнительные валидные пользователи для проверки успешного входа
+        ("problem_user", "secret_sauce"),
+        ("performance_glitch_user", "secret_sauce"),
+        ("visual_user", "secret_sauce"),
+    ],
+    ids=["env_user", "problem_user", "performance_user", "visual_user"],
+)
+def test_successful_login(page, username, password):
     login_page = LoginPage(page)
     page.goto("https://www.saucedemo.com/")
 
-    username = os.getenv("SAUCE_USER", "standard_user")
-    password = os.getenv("SAUCE_PASS", "secret_sauce")
-
+    # Теперь используем переменные username и password из параметров pytest
     login_page.login(username, password)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
 
