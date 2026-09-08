@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field, field_validator
 
 class Post(BaseModel):
     # Используем Field для валидации параметров (минимум 2-3 на модель)
+
     id: int = Field(gt=0, description="ID поста должен быть больше 0")
     user_id: int = Field(
         alias="userId", gt=0, description="ID пользователя должен быть больше 0"
@@ -20,6 +21,10 @@ class Post(BaseModel):
             raise ValueError("Заголовок не должен состоять только из пробелов")
         return v
 
+    userId: int
+    id: int
+    title: str
+    body: str
 
 class User(BaseModel):
     id: int = Field(gt=0, description="ID пользователя должен быть больше 0")
