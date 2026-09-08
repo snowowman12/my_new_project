@@ -14,6 +14,7 @@ TIMEOUT_SECONDS = 5.0
 # ВСПOMOГАТЕЛЬНЫЕ ФУНКЦИИ КЛИЕНТА
 # =====================================================================
 
+
 def get_post(session: requests.Session, post_id: int) -> dict:
     """Получает пост по его ID с использованием сессии.
 
@@ -44,11 +45,7 @@ def create_post(session: requests.Session, title: str, body: str, user_id: int) 
     Возвращает dict с данными созданного поста.
     """
     url = f"{BASE_URL}/posts"
-    payload = {
-        "title": title,
-        "body": body,
-        "userId": user_id
-    }
+    payload = {"title": title, "body": body, "userId": user_id}
 
     try:
         response = session.post(url, json=payload, timeout=TIMEOUT_SECONDS)
@@ -85,6 +82,7 @@ def create_post(session: requests.Session, title: str, body: str, user_id: int) 
 # PYTEST ФИКСТУРЫ
 # =====================================================================
 
+
 @pytest.fixture(scope="session")
 def api_session():
     """Фикстура для переиспользования HTTP-сессии (Критерий: requests.Session)."""
@@ -95,6 +93,7 @@ def api_session():
 # =====================================================================
 # ТЕСТЫ API (С обновлёнными именами)
 # =====================================================================
+
 
 def test_get_post_validates_with_pydantic(api_session):
     """GET /posts/1 → получение через функцию + валидация через Post."""
