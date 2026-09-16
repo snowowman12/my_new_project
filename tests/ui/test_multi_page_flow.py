@@ -14,4 +14,4 @@ def test_add_to_cart_from_details_flow(page: Page):
     cart_page.verify_cart_is_visible()
 
     # Добавляем один assert на URL страницы корзины
-    expect(page).to_have_url("https://www.saucedemo.com")
+    expect(page).to_have_url("https://www.automationexercise.com")

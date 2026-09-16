@@ -4,7 +4,7 @@ from playwright.sync_api import Page, expect
 
 @pytest.mark.ui
 def test_features_items_subset(page: Page) -> None:
-    page.goto("https://www.saucedemo.com")
+    page.goto("https://www.automationexercise.com")
 
     # Находим контейнер секции по заголовку (устойчивый способ)
     features_section = page.get_by_text("Features Items").locator("..").locator("..")

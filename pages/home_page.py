@@ -5,7 +5,7 @@ from pages.base_page import BasePage
 class HomePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
-        self._url = "https://www.saucedemo.com"
+        self._url = "https://www.automationexercise.com"
 
     def goto(self) -> "HomePage":
         # Переходим на страницу, ожидая готовности DOM
