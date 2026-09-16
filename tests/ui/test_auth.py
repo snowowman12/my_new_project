@@ -26,7 +26,7 @@ load_dotenv()
 )
 def test_successful_login(page, username, password):
     login_page = LoginPage(page)
-    page.goto("https://www.saucedemo.com/")
+    page.goto("https://www.saucedemo.com")
 
     # Теперь используем переменные username и password из параметров pytest
     login_page.login(username, password)
@@ -36,7 +36,7 @@ def test_successful_login(page, username, password):
 @pytest.mark.ui
 def test_locked_out_user(page):
     login_page = LoginPage(page)
-    page.goto("https://www.saucedemo.com/")
+    page.goto("https://www.saucedemo.com")
 
     login_page.login("locked_out_user", "secret_sauce")
     error = login_page.get_error_message()
