@@ -31,6 +31,9 @@ def test_successful_login(page, username, password):
     # Теперь используем переменные username и password из параметров pytest
     login_page.login(username, password)
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
+    # 2. Дополнительный assert: проверяем, что на новой странице виден заголовок каталога
+    # (Предполагается, что на странице inventory есть элемент с текстом "Products")
+    expect(page.get_by_text("Products")).to_be_visible()
 
 
 @pytest.mark.ui
@@ -41,3 +44,6 @@ def test_locked_out_user(page):
     login_page.login("locked_out_user", "secret_sauce")
     error = login_page.get_error_message()
     assert "Epic sadface" in error
+    # Переводим проверку на стабильный expect от Playwright.
+    # Он проверяет, что на странице появилось сообщение об ошибке блокировки.
+    expect(page.get_by_text("Epic sadface: Sorry, this user has been locked out.")).to_be_visible()
